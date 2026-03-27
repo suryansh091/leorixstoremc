@@ -1,1 +1,287 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leorix MC Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Press Start 2P',cursive;
+  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+  url('background.png') no-repeat center/cover;
+  color:#fff;
+}
+
+#particles-js{position:fixed;width:100%;height:100%;z-index:-1}
+
+header{text-align:center;padding:30px}
+
+.logo{
+  height:120px;
+  filter: drop-shadow(0 0 20px #00ffcc);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+  100%{transform:translateY(0)}
+}
+
+.title{
+  font-size:14px;
+  margin-top:20px;
+  background: linear-gradient(90deg,#00ffcc,#00ccff,#ff00ff,#00ffcc);
+  background-size:300%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation: gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0%}
+  100%{background-position:300%}
+}
+
+nav a{
+  margin:0 10px;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+nav a:hover{
+  color:#00ffcc;
+  transform:scale(1.1);
+}
+
+.section{padding:60px 20px;text-align:center}
+
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.card{
+  background:rgba(0,0,0,0.85);
+  padding:20px;
+  border:2px solid #00ffcc;
+  width:220px;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 0 20px #00ffcc;
+}
+
+.btn{
+  margin-top:10px;
+  padding:12px;
+  background:linear-gradient(45deg,#00ffcc,#00cc99);
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:10px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 15px #00ffcc;
+}
+
+/* LOGIN */
+.login-box{
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#111;
+  padding:30px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.login-box input{
+  display:block;
+  margin:10px auto;
+  padding:10px;
+  width:220px;
+}
+
+/* ADMIN */
+.admin-panel{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:300px;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:0.5s;
+}
+
+.admin-panel.active{right:0}
+
+.admin-panel input{
+  width:100%;
+  margin:10px 0;
+  padding:8px;
+}
+
+.admin-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#00ffcc;
+  color:black;
+  padding:10px;
+  border:none;
+  cursor:pointer;
+  display:none;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:rgba(0,0,0,0.7);
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<!-- LOGIN -->
+<div class="login-box" id="loginBox">
+<h3>Admin Login</h3>
+<input id="username" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button class="btn" onclick="login()">Login</button>
+</div>
+
+<header>
+<img src="logo.webp" class="logo">
+<div class="title">Leorix MC Store</div>
+
+<nav>
+<a href="#ranks">Ranks</a>
+<a href="#coins">Coins</a>
+<a href="#about">About</a>
+</nav>
+</header>
+
+<!-- RANKS -->
+<section id="ranks" class="section">
+<h2>Ranks</h2>
+<div class="cards" id="rankContainer">
+
+<div class='card'><h3>Prime</h3><p>₹149</p><button class='btn'>Buy</button></div>
+<div class='card'><h3>Leorix+</h3><p>₹299</p><button class='btn'>Buy</button></div>
+<div class='card'><h3>Mythic</h3><p>₹499</p><button class='btn'>Buy</button></div>
+
+</div>
+</section>
+
+<!-- COINS (FIXED ✅) -->
+<section id="coins" class="section">
+<h2>Coin Shop</h2>
+<div class="cards" id="coinContainer">
+
+<div class='card'><h3>100 Coins</h3><p>₹50</p><button class='btn'>Buy</button></div>
+<div class='card'><h3>500 Coins</h3><p>₹200</p><button class='btn'>Buy</button></div>
+<div class='card'><h3>1000 Coins</h3><p>₹350</p><button class='btn'>Buy</button></div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+<h2>About</h2>
+<p>Welcome to Leorix MC Store 🚀</p>
+</section>
+
+<!-- ADMIN -->
+<div class="admin-panel" id="adminPanel">
+<h3>Admin Panel</h3>
+<input id="itemName" placeholder="Item Name">
+<input id="itemPrice" placeholder="Price">
+<button onclick="addRank()">Add Rank</button>
+<button onclick="addCoin()">Add Coin</button>
+</div>
+
+<button class="admin-btn" id="adminBtn" onclick="toggleAdmin()">Admin</button>
+
+<footer>© Leorix MC Store</footer>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDaiP357SClEvOcQEm5Rz-X_9X1iXGrqic",
+  authDomain: "leorixstore.firebaseapp.com",
+  projectId: "leorixstore",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = function(){
+  let email = document.getElementById('username').value;
+  let password = document.getElementById('password').value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      document.getElementById('loginBox').style.display='none';
+      document.getElementById('adminBtn').style.display='block';
+      alert("Login Successful 🔥");
+    })
+    .catch(() => {
+      alert("Wrong Email or Password ❌");
+    });
+}
+</script>
+
+<script>
+function toggleAdmin(){
+  document.getElementById('adminPanel').classList.toggle('active');
+}
+
+function addRank(){
+  let name=document.getElementById('itemName').value;
+  let price=document.getElementById('itemPrice').value;
+  document.getElementById('rankContainer').innerHTML+=
+  `<div class='card'><h3>${name}</h3><p>₹${price}</p><button class='btn'>Buy</button></div>`;
+}
+
+function addCoin(){
+  let name=document.getElementById('itemName').value;
+  let price=document.getElementById('itemPrice').value;
+  document.getElementById('coinContainer').innerHTML+=
+  `<div class='card'><h3>${name}</h3><p>₹${price}</p><button class='btn'>Buy</button></div>`;
+}
+
+particlesJS("particles-js",{
+  particles:{
+    number:{value:60},
+    size:{value:3},
+    move:{speed:2},
+    line_linked:{enable:true}
+  }
+});
+</script>
+
+</body>
+</html>
